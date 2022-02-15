@@ -10,7 +10,7 @@ import { Todo } from "../interfaces";
 
 const Home: NextPage = () => {
   return (
-    <div className="h-[80vh] w-[500px] overflow-auto rounded-lg bg-white p-7">
+    <div>
       <TodoList />
     </div>
   );
@@ -22,9 +22,9 @@ const TodoList = () => {
   const [todos] = useAtom(todosAtom);
 
   return (
-    <div>
+    <div className="relative h-[80vh] w-[500px] rounded-lg bg-white p-7 shadow-md">
       <Header />
-      <ul className="mt-[24vh]">
+      <ul className=" mt-24 h-[50vh] overflow-y-auto">
         {todos.map((todo: Todo) => (
           <Todo key={todo.id} todo={todo} />
         ))}

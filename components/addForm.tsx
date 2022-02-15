@@ -21,7 +21,7 @@ const AddForm = () => {
   };
 
   return (
-    <div className="fiexed bottom-[10vh] flex h-20 items-center bg-white">
+    <div className="absolute bottom-0 z-10 flex h-10 items-center bg-white pb-4">
       <button className="mr-5 text-2xl text-[#2096f3]" onClick={addTodo}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +40,7 @@ const AddForm = () => {
       </button>
       <input
         ref={inputRef}
-        className="h-24 w-[400px] text-2xl focus:outline-none "
+        className="h-10 w-[400px] text-2xl focus:outline-none "
         type="text"
         placeholder="Create a new Todo"
         onKeyDown={onKeyDown}

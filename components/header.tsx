@@ -37,7 +37,7 @@ const Header = () => {
   let day = arrDays[today.getDay()];
 
   return (
-    <header className=" fixed top-[12vh] w-[450px] bg-white pr-3">
+    <header className="fixed top-[12vh] w-[450px] bg-white pr-3">
       <section className="flex justify-between">
         <div className="flex items-center">
           <span className="mr-1 text-4xl font-bold">{date}</span>
