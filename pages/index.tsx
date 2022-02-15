@@ -1,8 +1,12 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import type { NextPage } from "next";
 
 import Header from "../components/header";
 import AddForm from "../components/addForm";
+
+import { useAtom } from "jotai";
+import { todosAtom } from "../store";
+import { Todo } from "../interfaces";
 
 const Home: NextPage = () => {
   return (
@@ -14,58 +18,37 @@ const Home: NextPage = () => {
 
 export default Home;
 
-type Todo = { id: number; name: string; check: boolean };
-
 const TodoList = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const handleCheck = useCallback((todo: Todo) => {
-    setTodos((todos) =>
-      todos.map((item) => {
-        if (item.id === todo.id) {
-          return { ...todo, check: !todo.check };
-        }
-        return item;
-      })
-    );
-  }, []);
-
-  const handleDelete = useCallback((todo: Todo) => {
-    setTodos((todos) => todos.filter((item) => item.id !== todo.id));
-  }, []);
-
-  const handleAdd = useCallback((name: string) => {
-    setTodos((todos) => [...todos, { id: Date.now(), name, check: false }]);
-  }, []);
+  const [todos] = useAtom(todosAtom);
 
   return (
     <div>
-      <Header totalCount={todos.length} />
+      <Header />
       <ul className="mt-[24vh]">
-        {todos.map((todo) => (
-          <Todo
-            key={todo.id}
-            todo={todo}
-            onDelete={handleDelete}
-            onCheck={handleCheck}
-          />
+        {todos.map((todo: Todo) => (
+          <Todo key={todo.id} todo={todo} />
         ))}
       </ul>
-      <AddForm onAdd={handleAdd} />
+      <AddForm />
     </div>
   );
 };
 
-const Todo = (props: { todo: Todo; onDelete: any; onCheck: any }) => {
-  const { todo, onDelete, onCheck } = props;
+const Todo = (props: { todo: Todo }) => {
+  const { todo } = props;
+  const [, setTodos] = useAtom(todosAtom);
 
   const handleDelete = () => {
-    onDelete(todo);
-    console.log(`${todo.name} delete`);
+    setTodos((todos: Todo[]) => todos.filter((item) => item.id !== todo.id));
   };
 
   const handleCheck = () => {
-    onCheck(todo);
-    console.log(`${todo.name} check`);
+    setTodos((todos: Todo[]) =>
+      todos.map((item) => {
+        if (item.id === todo.id) return { ...todo, check: !todo.check };
+        return item;
+      })
+    );
   };
 
   const cls = (...classnames: string[]) => {

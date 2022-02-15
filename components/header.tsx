@@ -1,7 +1,9 @@
 import React, { memo } from "react";
+import { useAtom } from "jotai";
+import { todosAtom } from "../store";
 
-const Header = (props: { totalCount: number }) => {
-  const { totalCount } = props;
+const Header = () => {
+  const [todos] = useAtom(todosAtom);
 
   const today = new Date();
   const date = today.getDate();
@@ -50,7 +52,7 @@ const Header = (props: { totalCount: number }) => {
       </section>
       <section className="my-5 flex items-center justify-between text-4xl font-extrabold text-[#2096f3]">
         <h1 className="text-4xl">TO DO LIST</h1>
-        <span>{totalCount}</span>
+        <span>{todos.length}</span>
       </section>
     </header>
   );

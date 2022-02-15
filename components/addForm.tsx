@@ -1,12 +1,18 @@
 import React, { memo, useRef, KeyboardEvent } from "react";
+import { useAtom } from "jotai";
+import { todosAtom } from "../store";
 
-const AddForm = (props: { onAdd: any }) => {
-  const { onAdd } = props;
+const AddForm = () => {
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const [, setTodos] = useAtom(todosAtom);
+  const handleAdd = (name: string) => {
+    setTodos((todos) => [...todos, { id: Date.now(), name, check: false }]);
+  };
 
   const addTodo = (): void => {
     const name = inputRef.current?.value;
-    name && onAdd(name);
+    name && handleAdd(name);
     if (inputRef.current) inputRef.current.value = "";
   };
 
