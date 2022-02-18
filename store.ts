@@ -1,4 +1,4 @@
 import { atom } from "jotai";
-import { Todo } from "./interfaces";
+import { ITodo } from "./interfaces";
 
-export const todosAtom = atom<Todo[]>([]);
+export const todosAtom = atom<ITodo[]>([]);
