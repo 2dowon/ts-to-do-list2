@@ -21,7 +21,7 @@ const AddForm = () => {
   };
 
   return (
-    <div className="absolute bottom-0 z-10 flex h-10 items-center bg-white pb-4">
+    <div className="absolute bottom-0 z-10 flex h-10 w-[90vw] items-center bg-white pb-4 sm:w-[450px]">
       <button className="mr-5 text-2xl text-[#2096f3]" onClick={addTodo}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

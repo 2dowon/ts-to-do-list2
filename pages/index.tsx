@@ -22,9 +22,9 @@ const TodoList = () => {
   const [todos] = useAtom(todosAtom);
 
   return (
-    <div className="relative h-[80vh] w-[500px] rounded-lg bg-white p-7 shadow-md">
+    <div className="relative h-screen w-screen rounded-lg bg-white p-7 shadow-md sm:h-[80vh] sm:w-[500px]">
       <Header />
-      <ul className=" mt-24 h-[50vh] overflow-y-auto">
+      <ul className=" mt-28 h-[90vh] overflow-y-auto sm:mt-24 sm:h-[50vh]">
         {todos.map((todo: Todo) => (
           <Todo key={todo.id} todo={todo} />
         ))}
